@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "record/store"
+require "key_vortex"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

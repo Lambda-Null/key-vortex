@@ -2,7 +2,7 @@
 
 require_relative "key_vortex/version"
 
-module KeyVortex
+class KeyVortex
   class Error < StandardError; end
   # Your code goes here...
 end

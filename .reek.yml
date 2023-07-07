@@ -1,0 +1,4 @@
+detectors:
+  # TODO: Remove once design is set
+  IrresponsibleModule:
+    enabled: false

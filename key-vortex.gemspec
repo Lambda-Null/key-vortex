@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = ["lambda.null.42@gmail.com"]
 
   spec.summary = "Abstraction for interacting with various record stores"
-  spec.description = "Defines abstractions that can be built on top of for key/value storage on different technologies (file, s3, sql, redis, etc.)"
+  spec.description = "Defines abstractions that can be built on top of for key/value " \
+                     "storage on different technologies (file, s3, sql, redis, etc.)"
   spec.homepage = "https://github.com/Lambda-Null/key-vortex"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
@@ -33,4 +34,5 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
