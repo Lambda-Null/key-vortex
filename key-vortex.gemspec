@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative "lib/record/store/version"
+require_relative "lib/key_vortex/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "record-store"
-  spec.version = Record::Store::VERSION
+  spec.name = "key-vortex"
+  spec.version = KeyVortex::VERSION
   spec.authors = ["Lambda Null"]
   spec.email = ["lambda.null.42@gmail.com"]
 
   spec.summary = "Abstraction for interacting with various record stores"
   spec.description = "Defines abstractions that can be built on top of for key/value storage on different technologies (file, s3, sql, redis, etc.)"
-  spec.homepage = "https://github.com/Lambda-Null/record-store"
+  spec.homepage = "https://github.com/Lambda-Null/key-vortex"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 

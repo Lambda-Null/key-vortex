@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in record-store.gemspec
+# Specify your gem's dependencies in key-vortex.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
