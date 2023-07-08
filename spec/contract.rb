@@ -1,12 +1,31 @@
 # frozen_string_literal: true
 
-require "key_vortex/record/string"
+require "key_vortex/record"
+require "securerandom"
 
-RSpec.shared_context "a key vortex" do
+class SampleRecord < KeyVortex::Record
+  field :string, maximum: 10
+end
+
+RSpec.shared_context "an adapter" do
+  let(:store) do
+    KeyVortex.new(
+      subject,
+      SampleRecord
+    )
+  end
+
+  let(:record) do
+    SampleRecord.new(
+      id: SecureRandom.uuid,
+      string: "foo"
+    )
+  end
+
   it "stores and removes a string" do
-    string = KeyVortex::Record::String.new("bar")
-    subject.set("foo", string)
-    expect(subject.get("foo")).to eq(string)
-    subject.remove("foo")
+    store.save(record)
+    expect(store.find(record.id)).to eq(record)
+    subject.remove(record.id)
+    expect(store.find(record.id)).to be_nil
   end
 end
