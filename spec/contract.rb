@@ -4,7 +4,7 @@ require "key_vortex/record"
 require "securerandom"
 
 class SampleRecord < KeyVortex::Record
-  field :string, maximum: 10
+  field :sample, String, maximum: 10
 end
 
 RSpec.shared_context "an adapter" do
