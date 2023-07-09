@@ -16,8 +16,8 @@ class KeyVortex
         :maximum
       end
 
-      def within_applicable?(constraint)
-        value >= constraint.value
+      def within?(constraint)
+        super && value >= constraint.value
       end
     end
   end

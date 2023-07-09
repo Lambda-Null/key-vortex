@@ -8,7 +8,7 @@ class KeyVortex
       end
 
       def within?(constraint)
-        !applies_to?(constraint) || within_applicable?(constraint)
+        constraint.instance_of?(self.class)
       end
 
       def to_s

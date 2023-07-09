@@ -30,10 +30,16 @@ class KeyVortex
       !allows?(limitation)
     end
 
-    def accomodates?(constraint)
-      @constraints.all? do |con|
-        con.within?(constraint)
+    def applicable_constraints(constraint)
+      @constraints.select do |con|
+        con.applies_to?(constraint)
       end
+    end
+
+    def accomodates?(constraint)
+      !applicable_constraints(constraint).select do |con|
+        con.within?(constraint)
+      end.empty?
     end
 
     def to_s

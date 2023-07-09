@@ -27,7 +27,7 @@
 #  * 'just' rspec: 'rspec'
 
 group :red_green_refactor, halt_on_fail: true do
-  guard :rspec, cmd: "bundle exec rspec", all_on_pass: true do
+  guard :rspec, cmd: "bundle exec rspec", failed_mode: :focus, all_on_pass: true do
     require "guard/rspec/dsl"
     dsl = Guard::RSpec::Dsl.new(self)
 
