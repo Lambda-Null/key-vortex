@@ -14,17 +14,14 @@ RSpec.describe KeyVortex::Field do
   end
 
   it "is prohibited by more restrictive constraints" do
-    expect(KeyVortex::Field.new("foo", String, length: 10))
-      .to be_prohibited_by(adapter)
+    expect(KeyVortex::Field.new("foo", String, length: 10).within?(adapter)).to be_falsey
   end
 
   it "is prohibited by unchecked constraints" do
-    expect(KeyVortex::Field.new("foo", String))
-      .to be_prohibited_by(adapter)
+    expect(KeyVortex::Field.new("foo", String).within?(adapter)).to be_falsey
   end
 
   it "is not prohibited when adapter is also unchecked" do
-    expect(KeyVortex::Field.new("foo", String))
-      .to_not be_prohibited_by(adapter([]))
+    expect(KeyVortex::Field.new("foo", String).within?(adapter([]))).to be_truthy
   end
 end

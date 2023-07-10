@@ -16,3 +16,7 @@ Layout/LineLength:
 # TODO: Remove once design is set
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  AllowedMethods:
+    - describe

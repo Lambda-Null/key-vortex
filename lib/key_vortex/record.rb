@@ -19,8 +19,26 @@ class KeyVortex
       register_field(KeyVortex::Field.new(name, type, **constraints_hash))
     end
 
+    def self.field_constraints(field)
+      @field_hash[field]
+    end
+
     def self.register_field(field)
       field_hash[field.name] = field
+      define_getter(field)
+      define_setter(field)
+    end
+
+    def self.define_getter(field)
+      define_method(field.name) { @values[field.name] }
+    end
+
+    def self.define_setter(field)
+      define_method("#{field.name}=") do |val|
+        raise KeyVortex::Error, "Invalid value #{val} for #{field.name}" unless field.accepts?(val)
+
+        @values[field.name] = val
+      end
     end
 
     def self.inherited(subclass)
@@ -33,20 +51,11 @@ class KeyVortex
     # Long enough to accomodate a GUID
     field :key, String, length: 36
 
-    def initialize(fields)
-      @field_hash = fields
-    end
-
-    def respond_to_missing?(method, *args)
-      args.empty? && self.class.field_constraints(method)
-    end
-
-    def method_missing(method, *_args)
-      @field_hash[method]
-    end
-
-    def self.field_constraints(field)
-      @field_hash[field]
+    def initialize(values = {})
+      @values = {}
+      values.each do |name, value|
+        send("#{name}=", value)
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ class KeyVortex
     @record_class = record_class
 
     record_class.fields.each do |field|
-      next unless field.prohibited_by?(adapter)
+      next if field.within?(adapter)
 
       raise KeyVortex::Error,
             "#{adapter.class} can only handle field #{field.name} with these limitations:\n" +

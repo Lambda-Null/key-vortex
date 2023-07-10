@@ -17,9 +17,13 @@ class KeyVortex
       end)
     end
 
-    def prohibited_by?(adapter)
+    def within?(adapter)
       limitation = adapter.limitation_for(self)
-      limitation&.prohibits?(self.limitation)
+      !limitation || self.limitation.within?(limitation)
+    end
+
+    def accepts?(value)
+      limitation.accepts?(value)
     end
   end
 end

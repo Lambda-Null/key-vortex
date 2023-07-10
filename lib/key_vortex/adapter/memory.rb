@@ -12,7 +12,7 @@ class KeyVortex
       end
 
       def save(record)
-        @items[record.id] = record
+        @items[record.key] = record
       end
 
       def find(id)

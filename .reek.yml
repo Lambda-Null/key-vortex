@@ -2,3 +2,8 @@ detectors:
   # TODO: Remove once design is set
   IrresponsibleModule:
     enabled: false
+
+  DuplicateMethodCall:
+    exclude:
+      - KeyVortex::Record#self.define_getter
+      - KeyVortex::Record#self.define_setter

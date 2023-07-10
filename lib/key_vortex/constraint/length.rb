@@ -5,11 +5,11 @@ require "key_vortex/constraint/base"
 class KeyVortex
   class Constraint
     class Length < KeyVortex::Constraint::Base
-      attr_reader :value
+      attr_reader :limit
 
-      def initialize(value)
+      def initialize(limit)
         super()
-        @value = value
+        @limit = limit
       end
 
       def attribute
@@ -17,7 +17,11 @@ class KeyVortex
       end
 
       def within?(constraint)
-        super && value <= constraint.value
+        super && limit <= constraint.limit
+      end
+
+      def accepts?(value)
+        value.length <= limit
       end
     end
   end

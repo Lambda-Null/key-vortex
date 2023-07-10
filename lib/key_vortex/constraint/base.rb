@@ -12,7 +12,7 @@ class KeyVortex
       end
 
       def to_s
-        "#{attribute}: #{value}"
+        "#{attribute}: #{limit}"
       end
     end
   end

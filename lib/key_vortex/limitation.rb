@@ -20,14 +20,28 @@ class KeyVortex
       @constraints += constraints
     end
 
-    def allows?(limitation)
+    def encompasses?(limitation)
       @constraints.all? do |constraint|
-        limitation.accomodates?(constraint)
+        limitation.encompasses_constraint?(constraint)
       end
     end
 
-    def prohibits?(limitation)
-      !allows?(limitation)
+    def encompasses_constraint?(constraint)
+      !applicable_constraints(constraint).select do |con|
+        con.within?(constraint)
+      end.empty?
+    end
+
+    def within?(limitation)
+      limitation.constraints.all? do |constraint|
+        within_constraint?(constraint)
+      end
+    end
+
+    def within_constraint?(constraint)
+      !applicable_constraints(constraint).select do |con|
+        con.within?(constraint)
+      end.empty?
     end
 
     def applicable_constraints(constraint)
@@ -36,10 +50,8 @@ class KeyVortex
       end
     end
 
-    def accomodates?(constraint)
-      !applicable_constraints(constraint).select do |con|
-        con.within?(constraint)
-      end.empty?
+    def accepts?(value)
+      value.is_a?(type) && @constraints.all? { |constraint| constraint.accepts?(value) }
     end
 
     def to_s
