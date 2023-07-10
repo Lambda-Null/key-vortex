@@ -17,6 +17,6 @@ gem "guard-rspec"
 gem "guard-rubocop"
 
 gem "byebug"
-gem "stashify-contract"
+gem "key_vortex-contract"
 
 gem "yard"

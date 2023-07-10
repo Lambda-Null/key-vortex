@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "contract"
+require "key_vortex/contract"
 require "key_vortex/adapter/memory"
 
 RSpec.describe KeyVortex::Adapter::Memory do
