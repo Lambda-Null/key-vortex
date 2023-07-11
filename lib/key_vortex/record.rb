@@ -51,11 +51,17 @@ class KeyVortex
     # Long enough to accomodate a GUID
     field :key, String, length: 36
 
+    attr_reader :values
+
     def initialize(values = {})
       @values = {}
       values.each do |name, value|
         send("#{name}=", value)
       end
+    end
+
+    def ==(other)
+      self.class == other.class && values == other.values
     end
   end
 end
