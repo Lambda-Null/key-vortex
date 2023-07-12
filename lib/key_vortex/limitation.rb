@@ -27,9 +27,9 @@ class KeyVortex
     end
 
     def encompasses_constraint?(constraint)
-      !applicable_constraints(constraint).select do |con|
+      applicable_constraints(constraint).any? do |con|
         con.within?(constraint)
-      end.empty?
+      end
     end
 
     def within?(limitation)
@@ -39,9 +39,9 @@ class KeyVortex
     end
 
     def within_constraint?(constraint)
-      !applicable_constraints(constraint).select do |con|
+      applicable_constraints(constraint).any? do |con|
         con.within?(constraint)
-      end.empty?
+      end
     end
 
     def applicable_constraints(constraint)
