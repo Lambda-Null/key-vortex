@@ -13,5 +13,9 @@ class KeyVortex
     def register_limitation(limitation)
       @limitations[limitation.type] = limitation
     end
+
+    def self.symbol
+      name.downcase
+    end
   end
 end
