@@ -54,6 +54,27 @@ class KeyVortex
       value.is_a?(type) && @constraints.all? { |constraint| constraint.accepts?(value) }
     end
 
+    JSON_ADDITIONS = {
+      BigDecimal: "json/add/bigdecimal",
+      Complex: "json/add/complex",
+      Date: "json/add/date",
+      DateTime: "json/add/date_time",
+      Exception: "json/add/exception",
+      OpenStruct: "json/add/ostruct",
+      Range: "json/add/range",
+      Rational: "json/add/rational",
+      Regexp: "json/add/regexp",
+      Set: "json/add/set",
+      Struct: "json/add/struct",
+      Symbol: "json/add/symbol",
+      Time: "json/add/time"
+    }.freeze
+
+    def enable_json_additions
+      path = JSON_ADDITIONS[@type.class.name]
+      require path if path
+    end
+
     def to_s
       "Limitation: #{@type}\n\t#{@constraints.join('\n\t')}"
     end

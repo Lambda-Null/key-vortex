@@ -25,6 +25,7 @@ class KeyVortex
 
     def self.register_field(field)
       field_hash[field.name] = field
+      field.enable_json_additions
       define_getter(field)
       define_setter(field)
     end
@@ -62,6 +63,17 @@ class KeyVortex
 
     def ==(other)
       self.class == other.class && values == other.values
+    end
+
+    def to_json(*args)
+      {
+        JSON.create_id => self.class.name,
+        "values" => @values
+      }.to_json(*args)
+    end
+
+    def self.json_create(object)
+      new(object["values"])
     end
   end
 end

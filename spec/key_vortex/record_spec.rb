@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "json"
+
 require "key_vortex/record"
 
 class RecordOne < KeyVortex::Record
@@ -62,5 +64,9 @@ RSpec.describe KeyVortex::Record do
     it { expect(RecordOne.new(one: "one")).to eq(RecordOne.new(one: "one")) }
     it { expect(RecordOne.new(one: "one")).to_not eq(AnotherRecordOne.new(one: "one")) }
     it { expect(RecordOne.new(one: "one")).to_not eq(RecordOne.new(one: "not one")) }
+  end
+
+  context "json handling" do
+    it { expect(JSON.parse(JSON.generate(record), create_additions: true)).to eq(record) }
   end
 end

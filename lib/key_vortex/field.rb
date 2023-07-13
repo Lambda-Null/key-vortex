@@ -25,5 +25,9 @@ class KeyVortex
     def accepts?(value)
       limitation.accepts?(value)
     end
+
+    def enable_json_additions
+      @limitation.enable_json_additions
+    end
   end
 end
