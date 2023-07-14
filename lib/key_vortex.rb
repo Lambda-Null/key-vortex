@@ -11,7 +11,6 @@ class KeyVortex
   end
 
   def self.vortex(adapter_symbol, record_class, **options)
-    puts @adapter_registry
     new(
       @adapter_registry[adapter_symbol].build(**options),
       record_class
@@ -40,5 +39,9 @@ class KeyVortex
 
   def find(id)
     @adapter.find(id)
+  end
+
+  def remove(id)
+    @adapter.remove(id)
   end
 end

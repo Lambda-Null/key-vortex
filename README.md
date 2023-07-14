@@ -34,7 +34,11 @@ In order to save the record somewhere, you'll need to choose an adapter. To keep
 
 ```
 > require "key_vortex/adapter/memory"
-
+> vortex = KeyVortex.vortex(:memory, ExampleRecord)
+> vortex.save(ExampleRecord.new(key: "foo", a: "a", b: 10))
+> vortex.find("foo")
+=> #<ExampleRecord:0x0000560781f480b0 @values={:key=>"foo", :a=>"a", :b=>10}>
+```
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/key_vortex`. To experiment with that code, run `bin/console` for an interactive prompt.
 

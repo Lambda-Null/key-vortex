@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    key-vortex (0.2.4)
+    key-vortex (0.2.5)
 
 GEM
   remote: https://rubygems.org/

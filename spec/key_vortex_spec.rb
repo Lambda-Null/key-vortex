@@ -9,6 +9,10 @@ class BigStringRecord < KeyVortex::Record
   field :name, String, length: 1000
 end
 
+class BasicRecord < KeyVortex::Record
+  field :a, String
+end
+
 RSpec.describe KeyVortex do
   it "has a version number" do
     expect(KeyVortex::VERSION).not_to be nil
@@ -29,5 +33,14 @@ RSpec.describe KeyVortex do
         BigStringRecord
       )
     end.to raise_exception(KeyVortex::Error)
+  end
+
+  it "saves, finds and deletes a record" do
+    vortex = KeyVortex.vortex(:memory, BasicRecord)
+    record = BasicRecord.new(key: "foo", a: "bar")
+    vortex.save(record)
+    expect(vortex.find(record.key)).to eq(record)
+    vortex.remove(record.key)
+    expect(vortex.find(record.key)).to be_nil
   end
 end
