@@ -6,4 +6,6 @@ require "key_vortex/adapter/memory"
 RSpec.describe KeyVortex::Adapter::Memory do
   subject { KeyVortex::Adapter::Memory.new({}) }
   it_behaves_like "an adapter"
+
+  it { expect(described_class.symbol).to eq(:memory) }
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    key-vortex (0.2.3)
+    key-vortex (0.2.4)
 
 GEM
   remote: https://rubygems.org/
@@ -33,7 +33,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     json (2.6.3)
-    key_vortex-contract (0.2.3)
+    key_vortex-contract (0.2.4)
       rantly (~> 2.0.0)
       rspec (~> 3.0)
     kwalify (0.7.2)

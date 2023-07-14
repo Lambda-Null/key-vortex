@@ -15,7 +15,7 @@ class KeyVortex
     end
 
     def self.symbol
-      name.downcase
+      name.split(":").last.downcase.to_sym
     end
   end
 end

@@ -30,6 +30,10 @@ Invalid value 1000 for b (KeyVortex::Error)
 
 You may notice that a `key` field was defined as well. This can be a String up to 36 characters long, to accomodate a GUID if that's what you wish to use.
 
+In order to save the record somewhere, you'll need to choose an adapter. To keep dependencies down, these will generally be implemented in other gems, but an in memory adapter does ship with this gem.
+
+```
+> require "key_vortex/adapter/memory"
 
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/key_vortex`. To experiment with that code, run `bin/console` for an interactive prompt.

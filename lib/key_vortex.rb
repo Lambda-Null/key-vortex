@@ -11,6 +11,7 @@ class KeyVortex
   end
 
   def self.vortex(adapter_symbol, record_class, **options)
+    puts @adapter_registry
     new(
       @adapter_registry[adapter_symbol].build(**options),
       record_class
