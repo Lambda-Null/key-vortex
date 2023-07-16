@@ -2,55 +2,11 @@
 
 KeyVortex provides a common abstraction around storing records in various datastores. It allows for the use of different adapters depending on the environment, and provides constraints to protect programmatically against differing constraints between them.
 
-To start using KeyVortex, you'll need to define a record:
-
-```ruby
-require "key_vortex/record"
-
-class ExampleRecord < KeyVortex::Record
-	field :a, String, length: 20
-	field :b, Integer, maximum: 100
-end
-```
-
-Now you can use this object in various ways:
-
-```
-> record = ExampleRecord.new(key: "foo", a: "bar", b: 10)
-=> #<ExampleRecord:0x000055fe0b5fe538 @values={:key=>"foo", :a=>"bar", :b=>10}>
-> record.a
-=> "bar"
-> record.a = "baz"
-=> "baz"
-> record.a
-=> "baz"
-> record.b = 1000
-Invalid value 1000 for b (KeyVortex::Error)
-```
-
-You may notice that a `key` field was defined as well. This can be a String up to 36 characters long, to accomodate a GUID if that's what you wish to use.
-
-In order to save the record somewhere, you'll need to choose an adapter. To keep dependencies down, these will generally be implemented in other gems, but an in memory adapter does ship with this gem.
-
-```
-> require "key_vortex/adapter/memory"
-> vortex = KeyVortex.vortex(:memory, ExampleRecord)
-> vortex.save(ExampleRecord.new(key: "foo", a: "a", b: 10))
-> vortex.find("foo")
-=> #<ExampleRecord:0x0000560781f480b0 @values={:key=>"foo", :a=>"a", :b=>10}>
-```
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/key_vortex`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'key-vortex'
-```
+	gem 'key-vortex'
 
 And then execute:
 
@@ -62,7 +18,42 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start using KeyVortex, you'll need to define a [record](https://rubydoc.info/gems/key-vortex/KeyVortex/Record/):
+
+	require "key_vortex/record"
+
+	class ExampleRecord < KeyVortex::Record
+		field :a, String, length: 20
+		field :b, Integer, maximum: 100
+	end
+
+Now you can use this object in various ways:
+
+	> record = ExampleRecord.new(key: "foo", a: "bar", b: 10)
+	=> #<ExampleRecord:0x000055fe0b5fe538 @values={:key=>"foo", :a=>"bar", :b=>10}>
+	> record.a
+	=> "bar"
+	> record.a = "baz"
+	=> "baz"
+	> record.a
+	=> "baz"
+	> record.b = 1000
+	Invalid value 1000 for b (KeyVortex::Error)
+
+You may notice that a `key` field was defined as well. This can be a String up to 36 characters long, to accomodate a GUID if that's what you wish to use.
+
+In order to save the record somewhere, you'll need to choose an [adapter](https://rubydoc.info/gems/key-vortex/KeyVortex/Adapter).
+
+	> require "key_vortex/adapter/memory"
+	> vortex = KeyVortex.vortex(:memory, ExampleRecord)
+	> vortex.save(ExampleRecord.new(key: "foo", a: "a", b: 10))
+	> vortex.find("foo")
+	=> #<ExampleRecord:0x0000560781f480b0 @values={:key=>"foo", :a=>"a", :b=>10}>
+	> vortex.remove("foo")
+	> vortex.find("foo")
+	=> nil
+
+As you can see, you have the ability to `save`, `find` and `remove` records. Once a record is saved, it can be referenced by the `key`.
 
 ## Development
 
@@ -72,7 +63,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/key-vortex. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/key-vortex/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/Lambda-Null/key-vortex. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/Lambda-Null/key-vortex/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -80,4 +71,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the KeyVortex project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/key-vortex/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the KeyVortex project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Lambda-Null/key-vortex/blob/main/CODE_OF_CONDUCT.md).

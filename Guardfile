@@ -26,6 +26,12 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
+guard "yard" do
+  watch(%r{app/.+\.rb})
+  watch(%r{lib/.+\.rb})
+  watch(%r{ext/.+\.c})
+end
+
 group :red_green_refactor, halt_on_fail: true do
   guard :rspec, cmd: "bundle exec rspec", failed_mode: :focus, all_on_pass: true do
     require "guard/rspec/dsl"

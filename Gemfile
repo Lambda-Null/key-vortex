@@ -15,8 +15,10 @@ gem "guard"
 gem "guard-reek"
 gem "guard-rspec"
 gem "guard-rubocop"
+gem "guard-yard"
 
 gem "byebug"
 gem "key_vortex-contract"
 
+gem "webrick"
 gem "yard"

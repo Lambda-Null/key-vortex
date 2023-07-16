@@ -1,9 +1,13 @@
 detectors:
-  # TODO: Remove once design is set
   IrresponsibleModule:
-    enabled: false
+    exclude:
+      - AnotherRecordOne
+      - RecordOne
+      - RecordTwo
+      - BasicRecord
+      - BigStringRecord
 
   DuplicateMethodCall:
     exclude:
-      - KeyVortex::Record#self.define_getter
-      - KeyVortex::Record#self.define_setter
+      - KeyVortex::Record#define_getter
+      - KeyVortex::Record#define_setter

@@ -11,6 +11,11 @@ RSpec.describe KeyVortex::Limitation do
     )
   end
 
+  it "throws an error when a non-constraint is provided to the constructor" do
+    expect { KeyVortex::Limitation.new(String, 1) }
+      .to raise_error(KeyVortex::Error)
+  end
+
   it "accepts the described limitation" do
     expect(subject.accepts?("foo")).to be_truthy
   end
