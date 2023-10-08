@@ -4,6 +4,7 @@ require "key_vortex/constraint/base"
 require "key_vortex/constraint/length"
 require "key_vortex/constraint/maximum"
 require "key_vortex/constraint/minimum"
+require "key_vortex/constraint/regexp"
 
 class KeyVortex
   # Constraints define a restriction on the values which can be used
@@ -25,8 +26,8 @@ class KeyVortex
   #
   # All constraints can determine if a value is valid for them.
   #
-  # All constraints, when compared with other instances of themselves,
-  # it can always be determined if ones limitations fit within the
+  # Most constraints, when compared with other instances of
+  # themselves, can be determined if ones limitations fit within the
   # others. More formally, given an instance x of a constraint, an
   # instance y of the same constraint fits within x if and only if for
   # all values v that are valid for y, v is also valid for x.
@@ -45,6 +46,8 @@ class KeyVortex
         KeyVortex::Constraint::Maximum.new(limit)
       when :minimum
         KeyVortex::Constraint::Minimum.new(limit)
+      when :regexp
+        KeyVortex::Constraint::Regexp.new(limit)
       else
         raise KeyVortex::Error, "Unexpected attribute: #{attribute}"
       end
